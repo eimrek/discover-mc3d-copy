@@ -2,7 +2,6 @@
   "name": "discover-mc3d-react",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://mc3d.materialscloud.org",
   "type": "module",
   "scripts": {
     "dev": "vite",
