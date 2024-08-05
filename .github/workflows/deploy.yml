@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Set base path env variable for vite
+        run: echo "BASE_PATH=/${{ github.ref_name }}/" >> $GITHUB_ENV
 
       - name: Build project
         run: npm run build
