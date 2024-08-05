@@ -10,7 +10,5 @@ const repoName = "discover-mc3d-copy";
 // Configure base path dynamically
 export default defineConfig({
   plugins: [react()],
-  base: process.env.BASE_PATH
-    ? `/${repoName}/${process.env.BASE_PATH}/`
-    : `/${repoName}/`,
+  base: process.env.BRANCH_SUBPATH || "/",
 });
