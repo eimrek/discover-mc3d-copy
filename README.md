@@ -8,21 +8,12 @@ For local development:
 
 ```
 > npm install
-> npm run dev
-```
-
-To publish the local version to GitHub pages:
-
-```
-> npm run deploy
+> npm run dev:be-dev
 ```
 
 ## Deployment
 
-This repository is deployed automatically via Github pages, using the `gh-pages` branch in the following manner:
+This repository is deployed automatically via Github actions in the following manner:
 
-- `main` branch is deployed to the root of `gh-pages`, available at https://mc3d.materialscloud.org.
-- `develop` and any PR branches are deployed to `/dev` folder in the `gh-pages`, available at
-  - https://mc3d.materialscloud.org/dev/develop
-  - https://mc3d.materialscloud.org/dev/pr1
-  - ...
+- `main` branch is deployed to https://mc3d.kristjaneimre.eu, using the production backend.
+- `develop` branch is deployed to https://mc3d.kristjaneimre.eu/develop, using the development backend.
