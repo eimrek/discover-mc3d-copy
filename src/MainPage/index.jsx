@@ -51,7 +51,7 @@ function MainPage() {
       <div className="main-page">
         <TitleAndLogo />
         <div className="description">
-          TEST UPDATE
+          TEST UPDATE 2
           <br />
           Materials Cloud three-dimensional crystals database is a curated set
           of computationally relaxed three-dimensional crystal structures and
