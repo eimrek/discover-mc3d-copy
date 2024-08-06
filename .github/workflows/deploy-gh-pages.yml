@@ -5,10 +5,6 @@ on:
     branches:
       - main
       - develop
-  pull_request:
-    branches:
-      - main
-      - develop
 
 permissions:
   contents: write
@@ -32,7 +28,7 @@ jobs:
 
       - name: Set branch subpath variable (for vite)
         # This is the URL subpath where a branch is deployed.
-        # Empty for main branch (root), otherwise `dev/<branch-name>. $GITHUB_ENV is
+        # Empty for main branch (root), otherwise <branch-name>. $GITHUB_ENV is
         # accessible here in the yml (under `env.`) as well as externally via `process.env`
         run: |
           if [ "${{ github.ref_name }}" == "main" ]; then
@@ -50,3 +46,6 @@ jobs:
           folder: ./dist
           # Deploy main branch to root, other branches to their subfolders
           target-folder: ${{ env.BRANCH_SUBPATH }}
+          # when deploying main to root, keep `dev` folder, as other branches
+          # are deployed there
+          clean-exclude: "dev"
