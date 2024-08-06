@@ -8,5 +8,5 @@ import react from "@vitejs/plugin-react";
 // Configure base path dynamically
 export default defineConfig({
   plugins: [react()],
-  base: process.env.BRANCH_SUBPATH || "/",
+  base: process.env.BRANCH_SUBPATH || "",
 });
