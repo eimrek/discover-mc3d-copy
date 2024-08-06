@@ -48,13 +48,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./dist
+          # Deploy main branch to root, other branches to their subfolders
           target-folder: ${{ env.BRANCH_SUBPATH }}
-
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v4
-      #   with:
-      #     cname: "mc3d.kristjaneimre.eu"
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./dist
-      #     # Deploy main branch to root, other branches to their subfolders
-      #     destination_dir: ${{ env.BRANCH_SUBPATH }}
