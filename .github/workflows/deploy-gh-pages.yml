@@ -14,7 +14,8 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
 
     steps:
@@ -30,24 +31,30 @@ jobs:
         run: npm install
 
       - name: Set branch subpath variable (for vite)
-        # Thi is the URL subpath where a branch is deployed.
-        # Empty for main branch (root), branch name for others. $GITHUB_ENV is
-        # accessible here in the workflow (under `env.`) as well as externally via `process.env`
+        # This is the URL subpath where a branch is deployed.
+        # Empty for main branch (root), otherwise `dev/<branch-name>. $GITHUB_ENV is
+        # accessible here in the yml (under `env.`) as well as externally via `process.env`
         run: |
           if [ "${{ github.ref_name }}" == "main" ]; then
             echo "BRANCH_SUBPATH=" >> $GITHUB_ENV
           else
-            echo "BRANCH_SUBPATH=${{ github.ref_name }}" >> $GITHUB_ENV
+            echo "BRANCH_SUBPATH=dev/${{ github.ref_name }}" >> $GITHUB_ENV
           fi
 
       - name: Build project
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          # Deploy main branch to root, other branches to their subfolders
-          destination_dir: ${{ env.BRANCH_SUBPATH }}
-          cname: "mc3d.kristjaneimre.eu"
+          folder: ./dist
+          target-folder: ${{ env.BRANCH_SUBPATH }}
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     cname: "mc3d.kristjaneimre.eu"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./dist
+      #     # Deploy main branch to root, other branches to their subfolders
+      #     destination_dir: ${{ env.BRANCH_SUBPATH }}

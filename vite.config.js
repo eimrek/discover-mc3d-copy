@@ -5,8 +5,6 @@ import react from "@vitejs/plugin-react";
 // Set it dynamically from an env variable,
 // as different branches are deployed to different subpaths
 
-const repoName = "discover-mc3d-copy";
-
 // Configure base path dynamically
 export default defineConfig({
   plugins: [react()],
