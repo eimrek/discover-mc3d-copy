@@ -40,9 +40,6 @@ jobs:
             echo "BRANCH_SUBPATH=${{ github.ref_name }}" >> $GITHUB_ENV
           fi
 
-      - name: echo
-        run: echo "$BRANCH_SUBPATH"
-
       - name: Build project
         run: npm run build
 
@@ -53,3 +50,4 @@ jobs:
           publish_dir: ./dist
           # Deploy main branch to root, other branches to their subfolders
           destination_dir: ${{ env.BRANCH_SUBPATH }}
+          cname: "mc3d.kristjaneimre.eu"
